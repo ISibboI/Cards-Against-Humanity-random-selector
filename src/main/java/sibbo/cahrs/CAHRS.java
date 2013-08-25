@@ -1,4 +1,4 @@
-package sibbo.cagrs;
+package sibbo.cahrs;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -18,14 +18,14 @@ import javax.swing.JTextArea;
 
 import org.omg.CORBA.portable.InputStream;
 
-public class CAGRSFrame extends JFrame implements ActionListener {
+public class CAHRS extends JFrame implements ActionListener {
 	private JButton random;
 	private JTextArea result;
 	private Random r;
 
 	private String[] black, white;
 
-	public CAGRSFrame() throws IOException {
+	public CAHRS() throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(
 				"white.txt")));
 		white = in.readLine().split("<>");
@@ -71,6 +71,6 @@ public class CAGRSFrame extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) throws IOException {
-		new CAGRSFrame();
+		new CAHRS();
 	}
 }

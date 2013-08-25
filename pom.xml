@@ -21,7 +21,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.maventest.App</mainClass>
+							<mainClass>sibbo.cahrs.CAHRS</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
