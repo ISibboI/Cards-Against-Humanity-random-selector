@@ -21,18 +21,17 @@ import org.omg.CORBA.portable.InputStream;
 public class CAHRS extends JFrame implements ActionListener {
 	private JButton random;
 	private JTextArea result;
-	private Random r;
+	private Random r = new Random();
 
 	private String[] black, white;
 
 	public CAHRS() throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(
-				"white.txt")));
+				"sibbo/cahrs/white.txt")));
 		white = in.readLine().split("<>");
-		in = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("black.txt")));
+		in = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(
+				"sibbo/cahrs/black.txt")));
 		black = in.readLine().split("<>");
-
-		actionPerformed(null);
 
 		random = new JButton("Random!");
 		random.addActionListener(this);
@@ -40,12 +39,15 @@ public class CAHRS extends JFrame implements ActionListener {
 		result = new JTextArea("", 10, 30);
 		result.setFont(new Font("arial", Font.PLAIN, 20));
 		result.setWrapStyleWord(true);
+		result.setLineWrap(true);
 		result.setEditable(false);
 
 		getContentPane().setLayout(new BorderLayout());
 
 		getContentPane().add(BorderLayout.NORTH, result);
 		getContentPane().add(BorderLayout.SOUTH, random);
+
+		actionPerformed(null);
 
 		// setMinimumSize(new Dimension(640, 480));
 		setTitle("Cards against Humanity");
@@ -62,11 +64,15 @@ public class CAHRS extends JFrame implements ActionListener {
 		StringBuilder answer = new StringBuilder();
 		answer.append(parts[0]);
 		
+		if (parts.length == 1){
+			answer.append('\n');
+			answer.append(white[r.nextInt(white.length)]);
+		}else{
 		for (int i = 1; i < parts.length; i++) {
 			answer.append(white[r.nextInt(white.length)]);
 			answer.append(parts[i]);
-		}
-		
+		}}
+
 		result.setText(answer.toString());
 	}
 
