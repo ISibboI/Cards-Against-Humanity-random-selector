@@ -29,9 +29,11 @@ public class CAHRS extends JFrame implements ActionListener {
 		BufferedReader in = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(
 				"sibbo/cahrs/white.txt")));
 		white = in.readLine().split("<>");
+		in.close();
 		in = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(
 				"sibbo/cahrs/black.txt")));
 		black = in.readLine().split("<>");
+		in.close();
 
 		random = new JButton("Random!");
 		random.addActionListener(this);
@@ -63,15 +65,24 @@ public class CAHRS extends JFrame implements ActionListener {
 
 		StringBuilder answer = new StringBuilder();
 		answer.append(parts[0]);
-		
-		if (parts.length == 1){
+
+		if (parts.length == 1) {
 			answer.append('\n');
 			answer.append(white[r.nextInt(white.length)]);
-		}else{
-		for (int i = 1; i < parts.length; i++) {
-			answer.append(white[r.nextInt(white.length)]);
-			answer.append(parts[i]);
-		}}
+		} else {
+			for (int i = 1; i < parts.length; i++) {
+				String selected = white[r.nextInt(white.length)];
+
+				if (selected.endsWith("\"")) {
+					selected = selected.substring(0, selected.length() - 2) + ".";
+				} else {
+					selected = selected.substring(0, selected.length() - 1);
+				}
+
+				answer.append(selected);
+				answer.append(parts[i]);
+			}
+		}
 
 		result.setText(answer.toString());
 	}
