@@ -1,7 +1,6 @@
 package sibbo.cahrs;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,13 +9,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JTextArea;
-
-import org.omg.CORBA.portable.InputStream;
 
 public class CAHRS extends JFrame implements ActionListener {
 	private JButton random;
@@ -48,7 +43,7 @@ public class CAHRS extends JFrame implements ActionListener {
 
 		getContentPane().add(BorderLayout.NORTH, result);
 		getContentPane().add(BorderLayout.SOUTH, random);
-
+		
 		actionPerformed(null);
 
 		// setMinimumSize(new Dimension(640, 480));
